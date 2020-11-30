@@ -10,46 +10,42 @@ $(shell ! test -e \.env && cat \.env.default > \.env)
 include .env
 
 # Defines colors for echo, eg: @echo "${GREEN}Hello World${COLOR_END}". More colors: https://stackoverflow.com/a/43670199/3090657
-YELLOW=\033[0;33m
-RED=\033[0;31m
-GREEN=\033[0;32m
-COLOR_END=\033[0;37m
 
 default: up
 
 up:
-	@echo "${YELLOW}Build and run containers...${COLOR_END}"
+	@echo "Build and run containers..."
 	docker-compose up -d  --remove-orphans
-	@echo "${YELLOW}Starting the project...${COLOR_END}"
-	docker-compose run node yarn start:dev
+	@echo "Starting the project..."
+	docker-compose -f .docker/docker-compose.yml run node yarn start:dev
 
 stop:
-	@echo "${YELLOW}Stopping containers...${COLOR_END}"
-	docker-compose stop
+	@echo "Stopping containers..."
+	docker-compose -f .docker/docker-compose.yml stop
 
 restart:
-	@echo "${YELLOW}Restarting containers...${COLOR_END}"
+	@echo "Restarting containers..."
 	$(MAKE) -s down
 	$(MAKE) -s up
 
 down:
-	@echo "${YELLOW}Removing network & containers...${COLOR_END}"
-	docker-compose down -v --remove-orphans
+	@echo "Removing network & containers..."
+	docker-compose -f .docker/docker-compose.yml down -v --remove-orphans
 
 install:
-	@echo "${YELLOW}Installing the project...${COLOR_END}"
-	docker-compose run node npm install
+	@echo "Installing the project..."
+	docker-compose -f .docker/docker-compose.yml run node npm install
 
 lint:
-	@echo "${YELLOW}Checking coding styles...${COLOR_END}"
-	docker-compose run node yarn eslint --fix
+	@echo "Checking coding styles..."
+	docker-compose -f .docker/docker-compose.yml run node yarn eslint --fix
 
 migrate:
-	@echo "${YELLOW}Making migrate...${COLOR_END}"
-	docker-compose run node npm run knex
+	@echo "Making migrate..."
+	docker-compose -f .docker/docker-compose.yml run node npm run knex
 
 db:
-	@echo "${YELLOW}Entering database...${COLOR_END}"
+	@echo "Entering database..."
 	docker exec -ti quseit_db psql -U postgres
 
 # https://stackoverflow.com/a/6273809/1826109
