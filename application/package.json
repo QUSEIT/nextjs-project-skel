@@ -28,7 +28,7 @@
     "redux-devtools-extension": "^2.13.5",
     "redux-saga": "^0.16.0",
     "sass-loader": "^7.0.3",
-    "webpack": "^4.16.1"
+    "webpack": "4.16.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",

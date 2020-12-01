@@ -17,7 +17,7 @@ up:
 	@echo "Build and run containers..."
 	docker-compose up -d  --remove-orphans
 	@echo "Starting the project..."
-	docker-compose -f .docker/docker-compose.yml run node yarn start:dev
+	docker-compose -f .docker/docker-compose.yml run node node server.js
 
 stop:
 	@echo "Stopping containers..."
@@ -34,7 +34,7 @@ down:
 
 install:
 	@echo "Installing the project..."
-	docker-compose -f .docker/docker-compose.yml run node npm install
+	docker-compose -f .docker/docker-compose.yml run node
 
 lint:
 	@echo "Checking coding styles..."

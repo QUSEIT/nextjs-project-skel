@@ -18,8 +18,10 @@ services:
       - 'traefik.backend=node'
       - 'traefik.port=3000'
       - 'traefik.frontend.rule=Host:app.${PROJECT_BASE_URL}'
-    expose:
-      - "3000"
+    # expose:
+    #   - "3000"
+    ports: 
+      - "3088:3000"
     links:
       - "db"
 
