@@ -1,5 +1,5 @@
 # FROM node:8.9-alpine
-FROM node:12.16.1
+FROM node:12.13.1
 
 RUN mkdir -p /app
 WORKDIR /app
@@ -16,7 +16,7 @@ RUN yarn config get registry
 RUN yarn config set registry http://registry.npm.taobao.org/
 RUN yarn install 
 
-# ENV PORT 8080
-EXPOSE 3000
+ENV PORT 80
+EXPOSE 80
 
-# CMD ["node", "server.js"]
+CMD ["node", "server.js"]

@@ -1,23 +1,24 @@
 .PHONY: default up stop restart down install lint migrate db
 
 # Make sure the local file with docker-compose overrides exist.
-$(shell ! test -e \.\/.docker\/docker-compose\.override\.yml && cat \.\/.docker\/docker-compose\.override\.default\.yml > \.\/.docker\/docker-compose\.override\.yml)
+# $(shell ! test -e \.\/.docker\/docker-compose\.override\.yml && cat \.\/.docker\/docker-compose\.override\.default\.yml > \.\/.docker\/docker-compose\.override\.yml)
 
 # Create a .env file if not exists and include default env variables.
-$(shell ! test -e \.env && cat \.env.default > \.env)
+# $(shell ! test -e \.env && cat \.env.default > \.env)
 
 # Make all variables from the file available here.
 include .env
 
 # Defines colors for echo, eg: @echo "${GREEN}Hello World${COLOR_END}". More colors: https://stackoverflow.com/a/43670199/3090657
+# @echo "Build and run containers..."
+	# docker-compose up -d  --remove-orphans
+	# @echo "Starting the project..."
+	# cd ./.docker/
 
 default: up
 
 up:
-	@echo "Build and run containers..."
-	docker-compose up -d  --remove-orphans
-	@echo "Starting the project..."
-	docker-compose -f .docker/docker-compose.yml run node node server.js
+	docker-compose -f .docker/docker-compose.yml up
 
 stop:
 	@echo "Stopping containers..."
@@ -33,8 +34,13 @@ down:
 	docker-compose -f .docker/docker-compose.yml down -v --remove-orphans
 
 install:
-	@echo "Installing the project..."
-	docker-compose -f .docker/docker-compose.yml run node
+	@echo "Create web image and installing node depend... image_name => quseit_nextjs"
+	docker build -t quseit_nextjs -f ./application/Dockerfile ./application
+
+
+start:
+	@echo "start run nextjs...😜"
+	docker-compose -f .docker/docker-compose.yml run start
 
 lint:
 	@echo "Checking coding styles..."

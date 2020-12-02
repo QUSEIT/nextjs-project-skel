@@ -1,36 +1,33 @@
-version: '2'
+version: "2"
 services:
   db:
     image: postgres:9.4
-    container_name: nextjs_db
+    container_name: quseit_db
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
     ports:
       - "15432:5432"
-      
-  node:
-    build: ../application/.
-    container_name: nextjs_web
-    working_dir: /app
+
+  node-next:
+    image: quseit_nextjs
+    container_name: quseit_web
     labels:
-      - 'traefik.backend=node'
-      - 'traefik.port=3000'
-      - 'traefik.frontend.rule=Host:app.${PROJECT_BASE_URL}'
-    # expose:
-    #   - "3000"
-    ports: 
-      - "3088:3000"
-    links:
-      - "db"
+      - "traefik.backend=quseit_web"
+      - "traefik.port=3000"
+      - "traefik.frontend.rule=Host:app.docker.localhost"
+    expose:
+      - "3000"
+    # ports: 
+    #     - "8081:80"
 
   traefik:
     image: traefik
-    container_name: nextjs_traefik
+    container_name: quseit_traefik
     restart: unless-stopped
     command: -c /dev/null --web --docker --logLevel=INFO
     ports:
-      - '80:80'
+      - "80:80"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
