@@ -1,5 +1,16 @@
-version: "2"
+version: "3"
+
 services:
+  traefik:
+    image: traefik
+    container_name: quseit_traefik
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   db:
     image: postgres:9.4
     container_name: quseit_db
@@ -14,20 +25,9 @@ services:
     image: quseit_nextjs
     container_name: quseit_web
     labels:
-      - "traefik.backend=quseit_web"
-      - "traefik.port=3000"
-      - "traefik.frontend.rule=Host:app.docker.localhost"
+      - "traefik.http.routers.node-next.rule=Host(`node-next.docker.localhost`)"
     expose:
       - "3000"
-    # ports: 
-    #     - "8081:80"
-
-  traefik:
-    image: traefik
-    container_name: quseit_traefik
-    restart: unless-stopped
-    command: -c /dev/null --web --docker --logLevel=INFO
-    ports:
-      - "80:80"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+    ports: 
+      - "8081:3000"
+  

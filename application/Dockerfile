@@ -16,7 +16,6 @@ RUN yarn config get registry
 RUN yarn config set registry http://registry.npm.taobao.org/
 RUN yarn install 
 
-ENV PORT 80
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["node", "server.js"]
