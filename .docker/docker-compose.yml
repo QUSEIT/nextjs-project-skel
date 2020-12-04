@@ -25,7 +25,7 @@ services:
     image: quseit_nextjs
     container_name: quseit_web
     labels:
-      - "traefik.http.routers.node-next.rule=Host(`node-next.docker.localhost`)"
+      - "traefik.http.routers.node-next.rule=Host(`quseit_web.docker.localhost`)"
     expose:
       - "3000"
     ports: 
