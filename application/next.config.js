@@ -1,6 +1,7 @@
 const globImporter = require('node-sass-glob-importer');
 
-const marked = require("marked");
+const marked = require('marked');
+
 const renderer = new marked.Renderer();
 module.exports = {
   webpack: (config => {
@@ -32,18 +33,18 @@ module.exports = {
       {
         test: /\.md$/,
         use: [
-            {
-                loader: "html-loader"
+          {
+            loader: 'html-loader',
+          },
+          {
+            loader: 'markdown-loader',
+            options: {
+              pedantic: true,
+              renderer,
             },
-            {
-                loader: "markdown-loader",
-                options: {
-                  pedantic: true,
-                  renderer
-                }
-            }
-        ]
-      }
+          },
+        ],
+      },
     );
 
     return config;

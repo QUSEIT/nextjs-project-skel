@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "async": "^2.6.1",
+    "@babel/core": "^7.13.14",
+    "babel-loader": "^8.2.2",
     "compression": "^1.7.3",
     "express": "^4.16.3",
     "html-loader": "^0.5.5",
@@ -12,7 +13,7 @@
     "markdown-loader": "^4.0.0",
     "marked": "^0.5.1",
     "mssql": "^4.2.2",
-    "next": "^7.0.2",
+    "next": "^10.0.0",
     "next-redux-saga": "^3.0.0-beta.1",
     "next-redux-wrapper": "^2.0.0",
     "node-sass": "^4.9.2",
@@ -21,14 +22,13 @@
     "pg": "^7.6.0",
     "prop-types": "^15.6.2",
     "raw-loader": "^0.5.1",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.5",
     "redux-saga": "^0.16.0",
-    "sass-loader": "^7.0.3",
-    "webpack": "^4.16.1"
+    "sass-loader": "^7.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
@@ -42,10 +42,9 @@
     "parser": "babel-eslint"
   },
   "scripts": {
+    "dev": "next dev",
     "build": "next build",
-    "start": "PORT=3000 NODE_ENV=production node server.js",
-    "start:dev": "PORT=3000 NODE_ENV=development nodemon server.js",
-    "eslint": "./node_modules/.bin/eslint ./",
+    "start": "next start",
     "knex": "./node_modules/knex/bin/cli.js migrate:latest --env development"
   }
 }

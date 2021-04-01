@@ -1,4 +1,3 @@
-import React from 'react';
 import Head from 'next/head';
 import Package from '../../package';
 import inlineCSS from '../../styles/theme.scss';
@@ -19,7 +18,7 @@ const HtmlHead = () => {
   return (
     <Head>
       <title>
-SystemSeed Technical Assessment
+        SystemSeed Technical Assessment
       </title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
