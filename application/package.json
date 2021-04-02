@@ -46,6 +46,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "eslint": "./node_modules/.bin/eslint ./",
     "knex": "./node_modules/knex/bin/cli.js migrate:latest --env development"
   }
 }
