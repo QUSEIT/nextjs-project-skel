@@ -13,8 +13,8 @@ const app = nextjs({ dev });
 const handler = app.getRequestHandler();
 
 const environment = 'development';
-const config = require("./knexfile.js")[environment];
-const knex = require("knex")(config);
+const config = require('./knexfile.js')[environment];
+const knex = require('knex')(config);
 
 app.prepare()
   .then(() => {
@@ -63,7 +63,6 @@ app.prepare()
       console.log('> Ready on http://app.docker.localhost');
     });
   });
-
 
 
 // const loadData = ()=>{
