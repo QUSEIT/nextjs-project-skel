@@ -24,11 +24,12 @@ services:
       - "db"
 
   traefik:
-    image: traefik
+    image: traefik:1.7
     container_name: ${COMPOSE_PROJECT_NAME}_traefik
     restart: unless-stopped
     command: -c /dev/null --web --docker --logLevel=INFO
     ports:
       - '80:80'
+      - '8080:8080'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

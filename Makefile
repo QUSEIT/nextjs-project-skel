@@ -19,7 +19,7 @@ default: up
 
 up:
 	@echo "${YELLOW}Build and run containers...${COLOR_END}"
-	docker-compose up -d  --remove-orphans
+	docker-compose up -d --remove-orphans db traefik 
 	@echo "${YELLOW}Starting the project...${COLOR_END}"
 	docker-compose run node yarn start:dev
 
