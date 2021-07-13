@@ -4,7 +4,7 @@ RUN mkdir -p /app
 WORKDIR /app
 
 RUN npm install -g nodemon
-RUN npm config set registry https://registry.npmjs.org
+RUN npm config set registry https://registry.npm.taobao.org
 COPY package.json /app/package.json
 RUN npm install 
 COPY . /app
