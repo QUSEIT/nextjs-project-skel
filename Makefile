@@ -21,7 +21,7 @@ up:
 	@echo "${YELLOW}Build and run containers...${COLOR_END}"
 	docker-compose up -d  --remove-orphans
 	@echo "${YELLOW}Starting the project...${COLOR_END}"
-	docker-compose run node yarn start:dev
+	docker-compose run node npm run start:dev
 
 stop:
 	@echo "${YELLOW}Stopping containers...${COLOR_END}"
