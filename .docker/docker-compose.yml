@@ -24,7 +24,7 @@ services:
       - "db"
 
   traefik:
-    image: traefik
+    image: traefik:1.7
     container_name: ${COMPOSE_PROJECT_NAME}_traefik
     restart: unless-stopped
     command: -c /dev/null --web --docker --logLevel=INFO
